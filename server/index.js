@@ -28,6 +28,7 @@ const corsOptions = {
     "http://localhost:4000",
     "http://localhost:5173",
     "http://localhost:5174",
+    "https://fryktion-ecommerece-app-adt2.vercel.app",
   ],
   credentials: true,
   optionsSuccessStatus: 200,
