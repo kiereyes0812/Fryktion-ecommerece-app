@@ -3,7 +3,7 @@
 //Stores are defined using the defineStore() function and can be registered globally or locally within a component.
 import { defineStore } from 'pinia';
 import { reactive } from 'vue';
-import axios from 'axios'; // <<
+import api from '../api.js';
 //defineStore() creates a store. It has 2 arguments, the unique id of the store and the callback function that defines and returns the states and actions of the store.
 //States and methods from a store can be accessed globally.
 //export useGlobalStore to other files. When we need access to our global state and methods, we will be able to use the useGlobalStore method to create an instance of our global store.
@@ -32,13 +32,7 @@ export const useGlobalStore = defineStore('global',() => {
         	return;
     	}
 
-        let {data} = await axios({
-            method: 'get',
-            url: 'http://localhost:4000/users/details',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        let { data } = await api.get('/users/details');
 
 
         console.log(data);

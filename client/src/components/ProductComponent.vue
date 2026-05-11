@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import api from "@/api.js";
 
 export default {
   name: "ProductCard",
@@ -56,7 +56,7 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get("http://localhost:4000/products/active");
+      const res = await api.get("/products/active");
       this.products = res.data;
     } catch (err) {
       console.error("Error fetching products:", err);
