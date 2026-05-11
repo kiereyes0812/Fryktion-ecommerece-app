@@ -1,21 +1,4 @@
-<!-- 
-  What is a component? 
-    A component is a reusable part of an application.
 
-  What is a VueJS Component?
-    A VueJS component is an independent reusable part of an application. In VueJS, components are usually created with the concept of Single-File Component (SFC) which simply means that in VueJS, a component holds the HTML code, JS Script and CSS altogether in a file with a .vue extension instead of having and keeping separate files for each.
-
-  An SFC consists of three parts:
-    1. Template
-    2. Script
-    3. Style
-
-  This provides a convenient way to organize and reuse components in a declarative and modular way. They also allow for better separation of concerns, making it easier to reason about the functionality and styling of a component
--->
-<!-- Each SFC block consists of HTML-like tags that encapsulates the block. They can be in any order. -->
-
-<!-- Script: A block of JavaScript code that defines the behavior and logic of the component. -->
-<!-- <script setup> cannot contain ES module exports. -->
 <script>
   // To be able to add a component into another component, in the script block, import the component 
   // The name of the component is the name of the file by default.
