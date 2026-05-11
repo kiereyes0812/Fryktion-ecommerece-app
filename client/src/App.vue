@@ -1,67 +1,74 @@
-<script setup>
-import NavbarComponent from './components/NavbarComponent.vue';
-import { useGlobalStore } from "./stores/global"; // <<
-import { onBeforeMount } from "vue" // <<
+<!-- 
+  What is a component? 
+    A component is a reusable part of an application.
 
-export default {
-  components: {
-    NavbarComponent
-  },
-  setup() {
-    // Access the global store and get the "getUserDetails" action
-    const { getUserDetails } = useGlobalStore();
+  What is a VueJS Component?
+    A VueJS component is an independent reusable part of an application. In VueJS, components are usually created with the concept of Single-File Component (SFC) which simply means that in VueJS, a component holds the HTML code, JS Script and CSS altogether in a file with a .vue extension instead of having and keeping separate files for each.
 
-    // Lifecycle hook: runs before the component is mounted on the DOM
-    // Here we call "getUserDetails" and pass in the saved email from localStorage
-    // This ensures the global store has the user's email even after a page refresh
-    onBeforeMount(() => getUserDetails(localStorage.getItem("token")));
+  An SFC consists of three parts:
+    1. Template
+    2. Script
+    3. Style
+
+  This provides a convenient way to organize and reuse components in a declarative and modular way. They also allow for better separation of concerns, making it easier to reason about the functionality and styling of a component
+-->
+<!-- Each SFC block consists of HTML-like tags that encapsulates the block. They can be in any order. -->
+
+<!-- Script: A block of JavaScript code that defines the behavior and logic of the component. -->
+<!-- <script setup> cannot contain ES module exports. -->
+<script>
+  // To be able to add a component into another component, in the script block, import the component 
+  // The name of the component is the name of the file by default.
+  // Add export default {} to be able to add the imported component in the root component.
+  // import BannerComponent from './components/BannerComponent.vue';
+  import NavbarComponent from './components/NavbarComponent.vue';
+  import FooterComponent from './components/FooterComponent.vue';
+  import ProductComponent from './components/ProductComponent.vue';
+  import { useGlobalStore } from "./stores/global"; // <<
+  import { onBeforeMount } from "vue" // <<
+  
 
 
-    // Every time the app (or a page within it) refreshes or reloads, the components are created again → which means the setup() function is invoked again.
+  export default {
+    components: {
+      // BannerComponent,
+      NavbarComponent,
+      ProductComponent,
+      FooterComponent
+      /* ACTIVITY SOLUTION END */
+    },
+    setup() { // <<
+      // Access the global store and get the "getUserDetails" action
+      const { getUserDetails } = useGlobalStore();
+
+      // Lifecycle hook: runs before the component is mounted on the DOM
+      // Here we call "getUserDetails" and pass in the saved email from localStorage
+      // This ensures the global store has the user's email even after a page refresh
+      onBeforeMount(() => getUserDetails(localStorage.getItem("token")));
+
+
+      // Every time the app (or a page within it) refreshes or reloads, the components are created again → which means the setup() function is invoked again.
+    }
+
   }
-
-}
 </script>
 
+<!-- Template: A block of HTML-like code that defines the structure of the component. -->
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <NavbarComponent />
+  <!-- Banner component can be rendered in the page after import as its own html-like tag. -->
+  <!-- <BannerComponent /> -->
+  <!-- 
+      <router-view> is a Vue router component that is used to display the component associated with the current route.
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+      when a user navigates to a different route, vue router displays the component associated with the route inside the <router-view> component.
 
-  <main>
-    <TheWelcome />
-  </main>
+   -->
+  <router-view/>
+  <FooterComponent/>
+
 </template>
 
+<!-- Style: A block of CSS code that defines the styling of the component. -->
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>

@@ -1,15 +1,13 @@
 <script setup>
-     /* ACTIVITY SOLUTION START */
+
     //import both watch and ref hooks     
-    import { watch, ref, onBeforeMount } from 'vue';
+    import { computed, ref, onMounted } from 'vue';
     //import Notyf to allow the use of an alternative notification window.
     import { Notyf } from 'notyf';
     import { useRouter } from 'vue-router';
     import { useGlobalStore } from '../stores/global.js';
     import axios from 'axios';
     import api from "../api";
-    
-    /* ACTIVITY SOLUTION END */
 
     //Create a reactive state for each user input
     //We will bind the input to our reactive state
@@ -20,7 +18,6 @@
     const email = ref("");
     const password = ref("");
     const confirmPass = ref("");
-    const isEnabled = ref(false)
 
     const notyf = new Notyf();
 
@@ -28,16 +25,7 @@
 
     const {user} = useGlobalStore();
 
-    watch([ email, password,confirmPass], (currentValue, oldValue) => {
-
-        //console.log(currentValue);
-
-        if(currentValue.every(input => input) && currentValue[1] === currentValue[2]){
-            isEnabled.value = true
-        } else {
-            isEnabled.value = false
-        }
-    })
+    const isEnabled = computed(() => email.value !== "" && password.value !== "");
 
     async function handleSubmit(e){
 
@@ -95,11 +83,11 @@
     }
 
      /* ACTIVITY SOLUTION START */
-    onBeforeMount(() => {
-        if(user.email){
-            router.push({path: '/courses'})
-        }
-    })
+    onMounted(() => {
+      if (user.value?.email) {
+        router.push({ path: "/products" });
+      }
+    });
 </script>
 
 

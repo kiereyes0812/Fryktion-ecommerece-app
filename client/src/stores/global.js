@@ -7,6 +7,7 @@ import axios from 'axios'; // <<
 //defineStore() creates a store. It has 2 arguments, the unique id of the store and the callback function that defines and returns the states and actions of the store.
 //States and methods from a store can be accessed globally.
 //export useGlobalStore to other files. When we need access to our global state and methods, we will be able to use the useGlobalStore method to create an instance of our global store.
+
 export const useGlobalStore = defineStore('global',() => {
 	//user will be our global reactive object/state that can be updated and used in different parts/components of our application.
 	//this will contain the user's details which can be used by other components in the app.

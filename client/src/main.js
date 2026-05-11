@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import 'notyf/notyf.min.css'
-import './assets/main.css'
+import 'notyf/notyf.min.css';
+import './assets/main.css';
 
 //"import" statement allows us to use the code/exported modules from other files similar to how we use the "require" function in Node JS.
 
@@ -12,14 +12,14 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 
 import HomePage from './pages/HomePage.vue';
-import CoursesPage from './pages/CoursesPage.vue';
+import ProductsPage from './pages/ProductsPage.vue';
 import RegisterPage from './pages/RegisterPage.vue';
 import LoginPage from './pages/LoginPage.vue'
-import LogoutPage from './pages/LogoutPage.vue';
-import NewsPage from './pages/NewsPage.vue';
-import ErrorPage from './pages/ErrorPage.vue';
-import ProfilePage from './pages/ProfilePage.vue';
-import EditCoursePage from './pages/EditCoursePage.vue';
+// import LogoutPage from './pages/LogoutPage.vue';
+// import NewsPage from './pages/NewsPage.vue';
+// import ErrorPage from './pages/ErrorPage.vue';
+// import ProfilePage from './pages/ProfilePage.vue';
+// import EditCoursePage from './pages/EditCoursePage.vue';
 
 // vue-router is a package
 // import createRouter and createWebHistory hooks from vue-router
@@ -42,15 +42,15 @@ const router = createRouter({
 		component: HomePage
 	},
 	{
-		path: '/courses',
-		name: 'Courses',
-		component: CoursesPage
+		path: '/products',
+		name: 'Products',
+		component: ProductsPage
 	},
-	{ 
-		path: '/admin/courses/:id/edit', 
-		name: 'EditCourse', 
-		component: EditCoursePage 
-	},
+	// { 
+	// 	path: '/admin/courses/:id/edit', 
+	// 	name: 'EditCourse', 
+	// 	component: EditCoursePage 
+	// },
 	{
 		path: '/register',
 		name: 'Register',
@@ -60,26 +60,26 @@ const router = createRouter({
 		path:'/login',
 		name: 'Login',
 		component: LoginPage
-	},
-	{
-	  path: '/logout',
-	  name: 'Logout',
-	  component: LogoutPage
-	},
-	{
-	  path: '/news',
-	  name: 'News',
-	  component: NewsPage
-	},
-	{
-	  path: '/profile',
-	  name: 'Profile',
-	  component: ProfilePage
-	},
-	{
-    path: '/:catchAll(.*)',
-    component: ErrorPage
-  	}   
+	}
+	// {
+	//   path: '/logout',
+	//   name: 'Logout',
+	//   component: LogoutPage
+	// },
+	// {
+	//   path: '/news',
+	//   name: 'News',
+	//   component: NewsPage
+	// },
+	// {
+	//   path: '/profile',
+	//   name: 'Profile',
+	//   component: ProfilePage
+	// },
+	// {
+    // path: '/:catchAll(.*)',
+    // component: ErrorPage
+  	// }   
               
 	]
 })
